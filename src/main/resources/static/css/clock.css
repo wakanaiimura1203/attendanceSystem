@@ -1,0 +1,122 @@
+@charset "UTF-8";
+
+body {
+  font-family: "Work Sans", sans-serif;
+  place-items: center;
+  height: 100vh;
+  margin: 0;
+  background: #EEEEEE;
+  
+}
+
+.time {
+  padding: 8px;
+  text-align: center;
+  width: 300px;
+  color: black;
+}
+
+.hms {
+  font-size: 48px;
+  font-weight: 200;
+  color: black;
+}
+
+.ampm {
+  font-size: 12px;
+  color: black;
+}
+
+.date {
+  font-size: 20px;
+  color: black;
+}
+
+button.btn_10 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 50px;
+  box-sizing: border-box;
+  background: #fff;
+  position: relative;
+  max-width: 300px;
+  margin: 0 auto;
+  outline:none;
+  border:none;
+}
+button.btn_10 span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 50px;
+  background: #348adf;
+  box-sizing: border-box;
+  color: #333;
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  box-shadow: 0px 5px 12px #CAD4E2, -6px -6px 12px #FFF;
+  border-radius: 10px;
+  position: absolute;
+  top: -5px;
+  left: 0;
+  transition-duration: 0.2s;
+  max-width: 300px;
+  margin: 0 auto;
+}
+button.btn_10:hover span {
+  left: 0;
+  top: 0;
+  box-shadow: 0 0 4px #CAD4E2, -2px -2px 4px #FFF;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+button.btn_11 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 50px;
+  box-sizing: border-box;
+  background: #fff;
+  position: relative;
+  max-width: 300px;
+  margin: 0 auto;
+  margin-left:10px;
+  outline:none;
+  border:none;
+}
+button.btn_11 span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 50px;
+  background: #348adf;
+  box-sizing: border-box;
+  color: #333;
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  box-shadow: 0px 5px 12px #CAD4E2, -6px -6px 12px #FFF;
+  border-radius: 10px;
+  position: absolute;
+  top: -5px;
+  left: 0;
+  transition-duration: 0.2s;
+  max-width: 300px;
+  margin: 0 auto;
+  margin-left:10px;
+}
+button.btn_11:hover span {
+  left: 0;
+  top: 0;
+  box-shadow: 0 0 4px #CAD4E2, -2px -2px 4px #FFF;
+  max-width: 300px;
+  margin: 0 auto;
+  margin-left:10px;
+}

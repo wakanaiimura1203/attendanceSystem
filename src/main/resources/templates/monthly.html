@@ -1,0 +1,126 @@
+<!doctype html>
+<html class="no-js" lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>月別勤怠</title>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/flexslider.css">
+<link rel="stylesheet" href="css/jquery.fancybox.css">
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/responsive.css">
+<!-- <link rel="stylesheet" href="css/animate.min.css"> -->
+<link rel="stylesheet" href="css/font-icon.css">
+<!-- <link rel="stylesheet" href="css/clock.css"> -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+</head>
+
+<body>
+<!-- header section -->
+<section class="banner" role="banner">
+<!--header navigation -->
+  <header id="header">
+   <div class="header-content clearfix"> <a class="logo" th:href="@{/index}"><img src="images/TMS_icon03.png" alt=""></a>
+      <nav class="navigation" role="navigation">
+        <ul class="primary-nav">
+          <li><a th:href="@{/index}">トップ</a></li>
+          <li><a th:href="@{/logout}">ログアウト</a></li>
+		  <li><a href="#">設定</a></li>
+        </ul>
+      </nav>
+      </div>
+   </header>
+      <!--header navigation -->
+  </section>
+  <!-- header section -->
+  <!-- text banner section -->
+  
+  	 <div class="container">
+      <div class="panel panel-default">
+        <div class="panel-heading">月次勤怠</div>
+        <div class="panel-body">
+        <br>
+        
+        <!-- 月選択フォーム -->
+          <form class="form-inline" method="post" id="monthlyForm" th:object="${monthlyForm}" th:action="@{/monthly/viewMonthly}">
+            <div class="form-group">
+              <label class="control-label" style="color:black; font-weight: lighter">年月選択</label>
+              <input type="month" id="yearMonth" name="yearMonth" form="monthlyForm" style="color:black">
+            </div>
+             <!-- hiddenでユーザーidを送信 -->
+            <input type="hidden" id="userId" name="userId" th:if="${session.user != null}" th:value="${session.user.id}">
+            <button class="btn btn-default">選択	</button>
+          </form>
+          
+          <br>
+        </div>
+        <table class="table" border="1" style="color:black; text-align:center; border-collapse: collapse; border-color:#dcdcdc;">
+          	<thead>
+            	<tr style="background-color:#f5f5f5">
+	              <th style="text-align:center; width:70px;">日付</th>
+	              <th style="text-align:center; width:70px;">曜日</th>
+	              <th style="text-align:center; width:70px;">入力</th>
+	              <th style="text-align:center; width:70px;">出欠</th>
+	              <th style="text-align:center; width:120px;">開始時間</th>
+	              <th style="text-align:center; width:120px;">終了時間</th>
+	              <th style="text-align:center; width:120px;">休憩時間</th>
+	              <th style="text-align:center; width:120px;">残業時間</th>
+	              <th style="text-align:center; width:150px;">コメント</th>
+           		 </tr>
+	          </thead>
+	          <tbody>
+	            <tr style="vertical-align: middle; height:35px;" th:each="month:${session.monthlyList}">
+	              <!-- 日付 -->
+	              <td style="vertical-align:middle;" th:text="${month.month}+月+${month.day}+日">日付</td>
+	              <!-- 曜日 -->
+	              <td style="vertical-align:middle;" th:switch="${month.dayOfWeek}">
+	                <p th:case=0 th:text="日" style="background-color:#dcdcdc; color:red;"></p>
+		            <p th:case=1 th:text="月"></p>
+		            <p th:case=2 th:text="火"></p>
+		            <p th:case=3 th:text="水"></p>
+		            <p th:case=4 th:text="木"></p>
+		            <p th:case=5 th:text="金"></p>
+		            <p th:case=6 th:text="土" style="background-color:#dcdcdc; color:blue;"></p>
+	              </td>
+	              <!-- 入力状況 -->
+	              <td style="vertical-align:middle;">
+	              	<p th:if="${month.startTime} == null" th:text="未入力" style="color:red;"></p>
+	              	<p th:if="${month.startTime} != null" th:text="登録済"></p>
+	              </td>
+	              <!-- 出欠状況 -->
+	              <td style="vertical-align:middle;" th:text="${month.attendanceStatus}">出欠状況</td>
+	              <!-- 開始時間 -->	
+	              <td style="vertical-align:middle;" th:text="${month.startTime}">開始</td>
+	              <!-- 終了時間 -->
+	              <td style="vertical-align:middle" th:text="${month.endTime}">終了</td>
+	              <!-- 休憩時間 -->
+	              <td style="vertical-align:middle" th:text="${month.breakTime}">休憩</td>
+	              <!-- 残業時間 -->
+	              <td style="vertical-align:middle" th:text="${month.overTime}">残業</td>
+	              <!-- コメント-->
+	              <td style="vertical-align:middle" th:text="${month.comment}">コメント</td>
+	            </tr>
+	          </tbody>
+	        </table>
+      </div>
+    </div>
+  
+  
+  
+  
+  
+  
+  
+  
+  <!-- JS FILES --> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> 
+<script src="js/bootstrap.min.js"></script> 
+<script src="js/jquery.flexslider-min.js"></script> 
+<script src="js/jquery.fancybox.pack.js"></script> 
+<script src="js/jquery.waypoints.min.js"></script> 
+<script src="js/retina.min.js"></script> 
+<script src="js/modernizr.js"></script> 
+<script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,202 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="ja" xmlns:th="http://www.thymeleaf.org">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TMS</title>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/flexslider.css">
+<link rel="stylesheet" href="css/jquery.fancybox.css">
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/responsive.css">
+<link rel="stylesheet" href="css/animate.min.css">
+<link rel="stylesheet" href="css/font-icon.css">
+<link rel="stylesheet" href="css/clock.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+</head>
+
+<body>
+<!-- header section -->
+<section class="banner" role="banner">
+<!--header navigation -->
+  <header id="header">
+    <div class="header-content clearfix"> <a class="logo" th:href="@{/index}"><img src="images/TMS_icon03.png" alt=""></a>
+      <nav class="navigation" role="navigation">
+        <ul class="primary-nav">
+          <li><a th:href="@{/index}">トップ</a></li>
+          <li><a th:href="@{/logout}">ログアウト</a></li>
+		  <li><a href="#">設定</a></li>
+        </ul>
+      </nav>
+    	<a href="#" class="nav-toggle">Menu<span></span></a>
+     </div>
+      </header>
+      <!--header navigation -->
+  </section>
+  <!-- header section -->
+  <!-- text banner section -->
+<section id="banner" class="banner no-padding">
+  <div class="container-fluid">
+    <div class="row no-gutter">
+      <div class="flexslider">
+        <ul class="slides">
+          <li>
+            <div class="col-md-12">
+              <blockquote>
+                <h1>おはようございます, 
+                	<span th:if="${session.user != null}" th:text="${session.user.name}">ゲスト</span>さん！</h1>
+                <p style="font-size:30px">今日も1日がんばりましょう</p>	
+                <br>
+                 <!-- 時計表示 -->
+				<div class="time">
+					<span class="hms"></span> 
+					<span class="ampm"></span> <br> 
+					<span class="date"></span>
+				</div>
+				<br>
+				<section>
+					<form th:action="@{/startTime}" method="post" id="timeForm" th:object="${timeForm}">
+ 				    	<button class="btn_10" id="startTime" style="float:left"><span>出勤</span></button>
+ 				    	<input type="hidden" id="userId" name="userId" th:if="${session.user != null}" th:value="${session.user.id}">
+ 				    	<!-- <input type="hidden" id="startTime" name="startTime" th:if="${session.user != null}" th:value="出勤開始"> -->
+ 				    </form>
+ 				    <form th:action="@{/endTime}" method="post" id="timeForm" th:object="${timeForm}">
+ 						 <button class="btn_11" id="endTime" style="float:left"><span>退勤</span></button>
+ 						 <input type="hidden" id="userId" name="userId" th:if="${session.user != null}" th:value="${session.user.id}">
+ 						<!--  <input type="hidden" id="endTime" name="endTime" th:if="${session.user != null}" th:value="退勤完了"> -->
+ 					</form>
+				</section>
+				<br>
+				<h1 th:if="${session.time != null}" th:text="${session.time.startTime}"></h1>
+				<br>
+				<p> </p>
+								<p style="font-size:17px; clear: both; letter-spacing:3px; display:inline;">出勤時刻</p> 
+				<p style="display:inline; font-size:17px; letter-spacing:3px" th:if="${session.timeList != null}" th:text="【+${session.timeList.inputStartTime}+】">【09:00】</p>
+				<br>
+				<p style="display:inline; font-size:17px; letter-spacing:3px">退勤時刻</p>
+				<p style="display:inline; font-size:17px; letter-spacing:3px" th:if="${session.timeList != null}" th:text="【+${session.timeList.inputEndTime}+】">【17:30】</p>
+              </blockquote>
+            </div>
+          </li>
+       <!--    <li>
+            <div class="col-md-12">
+              <blockquote>
+                <h1>Hello, ○○さん!</h1>
+              </blockquote>
+            </div>
+          </li> -->
+        </ul>
+      </div>
+     </div>
+  </div>
+</section>
+<!-- Text banner section --> 
+<!-- portfolio section -->
+<section id="works" class="works section no-padding">
+  <div class="container-fluid">
+    <div class="row no-gutter">
+      <div class="col-lg-3 col-md-6 col-sm-6 work"> <a th:href="@{/daily}" class="work-box"> <img src="images/logo1.jpeg" alt="">
+        <div class="overlay">
+          <div class="overlay-caption">
+            <h5>日次勤怠</h5>
+            <p><i class="fa fa-search-plus fa-2x"></i></p>
+          </div>
+        </div>
+        <!-- overlay --> 
+        </a> </div>
+      <div class="col-lg-3 col-md-6 col-sm-6 work"> <a th:href="@{/monthly}" class="work-box"> <img src="images/logo2.jpeg" alt="">
+        <div class="overlay">
+          <div class="overlay-caption">
+            <h5>月次勤怠</h5>
+            <p><i class="fa fa-search-plus fa-2x"></i></p>
+          </div>
+        </div>
+        <!-- overlay --> 
+        </a> </div>
+      <div class="col-lg-3 col-md-6 col-sm-6 work"> <a th:href="@{/making}" class="work-box"> <img src="images/logo3.jpeg" alt="">
+        <div class="overlay">
+          <div class="overlay-caption">
+            <h5>残業時間</h5>
+            <p><i class="fa fa-search-plus fa-2x"></i></p>
+          </div>
+        </div>
+        <!-- overlay --> 
+        </a> </div>
+      <div class="col-lg-3 col-md-6 col-sm-6 work"> <a th:href="@{/working-users}" class="work-box"> <img src="images/logo4.jpeg" alt="">
+        <div class="overlay">
+          <div class="overlay-caption">
+            <h5>勤務中ユーザー</h5>
+            <p><i class="fa fa-search-plus fa-2x"></i></p>
+          </div>
+        </div>
+        <!-- overlay --> 
+        </a> </div>
+      <div class="col-lg-3 col-md-6 col-sm-6 work"> <a th:href="@{/making}" class="work-box"> <img src="images/logo5.jpeg" alt="">
+        <div class="overlay">
+          <div class="overlay-caption">
+            <h5>有給申請</h5>
+            <p><i class="fa fa-search-plus fa-2x"></i></p>
+          </div>
+        </div>
+        <!-- overlay --> 
+        </a> </div>
+      <div class="col-lg-3 col-md-6 col-sm-6 work"> <a th:href="@{/making}" class="work-box"> <img src="images/logo6.jpeg" alt="">
+        <div class="overlay">
+          <div class="overlay-caption">
+            <h5>マニュアル・ヘルプ</h5>
+            <p><i class="fa fa-search-plus fa-2x"></i></p>
+          </div>
+        </div>
+        <!-- overlay --> 
+        </a> </div>
+      <div class="col-lg-3 col-md-6 col-sm-6 work"> <a th:href="@{/setting}" class="work-box"> <img src="images/logo7.jpeg" alt="">
+        <div class="overlay">
+          <div class="overlay-caption">
+            <h5>設定</h5>
+            <p><i class="fa fa-search-plus fa-2x"></i></p>
+          </div>
+        </div>
+        <!-- overlay --> 
+        </a> </div>
+      <div class="col-lg-3 col-md-6 col-sm-6 work"> <a th:href="@{/making}" class="work-box"> <img src="images/logo8.jpeg" alt="">
+        <div class="overlay">
+          <div class="overlay-caption">
+            <h5>管理者用</h5>
+            <p><i class="fa fa-search-plus fa-2x"></i></p>
+          </div>
+        </div>
+        <!-- overlay --> 
+        </a> </div>
+    </div>
+  </div>
+</section>
+<!-- portfolio section --> 
+  <!-- footer -->
+<footer class="section footer">
+  <div class="footer-bottom">
+    <div class="container">
+      <div class="col-md-12">
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- footer --> 
+<!-- JS FILES --> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> 
+<script src="js/bootstrap.min.js"></script> 
+<script src="js/jquery.flexslider-min.js"></script> 
+<script src="js/jquery.fancybox.pack.js"></script> 
+<script src="js/jquery.waypoints.min.js"></script> 
+<script src="js/retina.min.js"></script> 
+<script src="js/modernizr.js"></script> 
+<script src="js/main.js"></script>
+<script src="/js/clock.js"></script>
+</body>
+</html>
+

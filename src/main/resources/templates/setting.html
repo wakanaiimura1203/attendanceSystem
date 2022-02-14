@@ -1,0 +1,67 @@
+<!doctype html>
+<html class="no-js" lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TMS</title>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/flexslider.css">
+<link rel="stylesheet" href="css/jquery.fancybox.css">
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/responsive.css">
+<link rel="stylesheet" href="css/animate.min.css">
+<link rel="stylesheet" href="css/font-icon.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+</head>
+
+<body>
+<!-- header section -->
+<section class="banner" role="banner">
+<!--header navigation -->
+  <header id="header">
+    <div class="header-content clearfix"> <a class="logo" th:href="@{/index}"><img src="images/TMS_icon03.png" alt=""></a>
+      <nav class="navigation" role="navigation">
+        <ul class="primary-nav">
+          <li><a th:href="@{/index}">トップ</a></li>
+          <li><a th:href="@{/logout}">ログアウト</a></li>
+		  <li><a href="#">設定</a></li>
+        </ul>
+      </nav>
+    	<a href="#" class="nav-toggle">Menu<span></span></a>
+     </div>
+      </header>
+      <!--header navigation -->
+  </section>
+  
+  
+  
+   <div class="container">
+      <div class="panel panel-default" style="width:50%; margin-left:auto; margin-right:auto; color:black">
+        <div class="panel-heading">定時刻設定</div>
+        <form id="ontime" th:action="@{/setting/inputSetting}" th:object="${ontimeForm}" method="post">
+      <!--   <table class="table" style="color:black; text-align:center"> -->
+        		<label style="font-weight: normal; margin:20px">業務開始：
+        		<input type="time" id="ontime" name ="standardStartTime" value="09:00"></label><br>
+ 				<label style="font-weight: normal; margin:20px">業務終了：
+ 				<input type="time" id="ontime" name ="standardEndTime" value="18:00"></label><br>
+ 				<!-- <label style="font-weight: normal; margin:20px">休憩時間：
+ 					<select class="form-control" style="width: 80px; margin-right:auto; margin-left:auto;">
+	              		<option>--</option>
+	             	   	<option>1</option>
+	             	   	<option>2</option>
+	             	   	<option>3</option>
+	             	   	<option>4</option>	
+	             	   	<option>5</option>
+	             	   	<option>6</option>
+	              	</select>時間</label><br> -->
+	            <!-- hiddenでユーザーidを送信 -->
+                <input type="hidden" id="userId" name="userId" th:if="${session.user != null}" th:value="${session.user.id}">
+ 				<button class="btn btn-primary" style="margin-left:20px">登録</button>
+       <!--  </table> -->
+        </form>
+      </div>
+    </div>
+
+</body>
+</html>

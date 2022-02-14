@@ -1,0 +1,133 @@
+<!doctype html>
+<html class="no-js" lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>日次勤怠</title>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/flexslider.css">
+<link rel="stylesheet" href="css/jquery.fancybox.css">
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/responsive.css">
+<!-- <link rel="stylesheet" href="css/animate.min.css"> -->
+<link rel="stylesheet" href="css/font-icon.css">
+<!-- <link rel="stylesheet" href="css/clock.css"> -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+</head>
+
+<body>
+<!-- header section -->
+<section class="banner" role="banner">
+<!--header navigation -->
+  <header id="header">
+   <div class="header-content clearfix"> <a class="logo" th:href="@{/index}"><img src="images/TMS_icon03.png" alt=""></a>
+      <nav class="navigation" role="navigation">
+        <ul class="primary-nav">
+          <li><a th:href="@{/index}">トップ</a></li>
+          <li><a th:href="@{/logout}">ログアウト</a></li>
+		  <li><a href="#">設定</a></li>
+        </ul>
+      </nav>
+      </div>
+   </header>
+      <!--header navigation -->
+  </section>
+  <!-- header section -->
+  <!-- text banner section -->
+  
+  	 <div class="container">
+      <div class="panel panel-default">
+        <div class="panel-heading">日次勤怠</div>
+        <div class="panel-body">
+
+       <!-- 日付選択フォーム -->
+           <!--  <div class="form-group">
+              <label class="control-label" style="color:black; font-weight: lighter">日付選択</label>
+              <input type="date" style="color:black" id="yearMonthDay" name="yearMonthDay">
+            </div> -->
+        </div>
+        <form class="form-inline" method="post" th:object="${dailyForm}" th:action='@{/daily/viewDaily}'>
+        	<table class="table" style="color:black; text-align:center">
+          	<thead>
+            	<tr>
+	           	  <th style="text-align:center">日付</th>
+	              <th style="text-align:center">出欠</th>
+	              <th style="text-align:center">就業時間</th>
+	              <th style="text-align:center">休憩時間</th>
+	              <th style="text-align:center">コメント</th>
+	              <th style="text-align:center">登録</th>
+           		 </tr>
+	          </thead>
+	          <tbody>
+	            <tr style="height:100px; vertical-align: middle;">
+	              <!-- 入力ステータス -->
+	              <td style="vertical-align:middle" id="yearMonthDay">
+	               <input type="date" style="color:black" id="yearMonthDay" name="yearMonthDay">
+	              </td>
+	              <!-- 出欠状況 -->
+	              <td style="vertical-align:middle" id="attendanceStatus">            　
+	              	<select class="form-control" style="width: 110px; margin-right:auto; margin-left:auto; height:middle;" name="attendanceStatus">
+	             	   	<option>出勤</option>
+	             	   	<option>有給</option>
+	             	   	<option>半休</option>
+	             	   	<option>慶弔休</option>	
+	             	   	<option>欠勤</option>
+	             	   	<option>その他（コメント欄に記載）</option>
+	              	</select>
+	              </td>
+	              <!-- 就業時間 -->
+	              <td style="vertical-align:middle">
+	              	<input type="time" id="startTime" name="startTime" value="09:00"> 〜 <input type="time" id="endTime" name="endTime" value="18:00">
+	              </td>
+	              <!-- 休憩時間 -->
+	              <td style="vertical-align:middle;" id="breakTime">
+	              	<input type="radio" name="breakTime" checked="checked" value="01:00">標準（1h）
+	              	<br>
+	              	<input type="radio" name="breakTime">入力（/h）<br>
+	              	<select class="form-control" style="width: 80px; margin-right:auto; margin-left:auto;">
+	              		<option>--</option>
+	             	   	<option>1</option>
+	             	   	<option>2</option>
+	             	   	<option>3</option>
+	             	   	<option>4</option>	
+	             	   	<option>5</option>
+	             	   	<option>6</option>
+	              	</select>
+	              </td>
+	              <!-- コメント -->
+	              <td style="vertical-align:middle">
+	              <input type="text" id="comment" name="comment"></td>
+	              <!-- 登録ボタン -->
+	              <td style="vertical-align:middle">
+	              	 <input type="hidden" id="userId" name="userId" th:if="${session.user != null}" th:value="${session.user.id}">
+	              	<button class="btn btn-default" style="background-color:#ff6347;">登録</button>
+	              </td>
+	            </tr>
+	          </tbody>
+	        </table>
+	     </form>
+      </div>
+    </div>
+  
+  
+  
+  
+  
+  
+  
+  
+  <!-- JS FILES --> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> 
+<script src="js/bootstrap.min.js"></script> 
+<script src="js/jquery.flexslider-min.js"></script> 
+<script src="js/jquery.fancybox.pack.js"></script> 
+<script src="js/jquery.waypoints.min.js"></script> 
+<script src="js/retina.min.js"></script> 
+<script src="js/modernizr.js"></script> 
+<script src="js/main.js"></script>
+<script src="/js/clock.js"></script>
+<script src="/js/sample.js"></script>
+</body>
+</html>
+  
