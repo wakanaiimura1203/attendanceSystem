@@ -1,0 +1,53 @@
+-- ユーザー情報用テーブル
+drop table if exists users cascade;
+
+CREATE TABLE users(
+	id serial PRIMARY KEY,
+	name varchar(20) not null,
+	email varchar(100) unique not null,
+	password text not null,
+	telephone varchar(15) not null,
+	status text
+);
+
+-- 勤怠管理用テーブル
+drop table if exists times cascade;
+
+CREATE TABLE times(
+	id serial primary key,
+	user_id integer,
+	date_of_day date,
+	input_start_time time,
+	input_end_time time
+);
+
+-- 月次勤怠用テーブル
+drop table if exists monthly cascade;
+
+CREATE TABLE monthly(
+	id serial primary key,
+	user_id integer,
+	year integer,
+	month integer,
+	day integer,
+	day_of_week text,
+	attendance_status text,
+	start_time time,
+	end_time time,
+	break_time time,
+	over_time time,
+	input_status text,
+	comment text
+);
+
+-- 定時テーブル
+drop table if exists ontimes cascade;
+
+CREATE TABLE ontimes(
+	id serial primary key,
+	user_id integer UNIQUE,
+	standard_start_time time,
+	standard_end_time time,
+	break_time time
+);
+
